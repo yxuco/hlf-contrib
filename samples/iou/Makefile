@@ -32,7 +32,7 @@ create: $(APP_FILE) clean
 	rm $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp $(SHIM_PATH)/chaincode_shim.go $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp $(SHIM_PATH)/dovetailimports.go $(BUILD_PATH)/$(APP_NAME)/src
-	cd $(BUILD_PATH)/$(APP_NAME)/src && \
+	# cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	echo "" >> go.mod && \
 	echo "replace github.com/yxuco/hlf-contrib => $(DT_REPO) $(DT_BRANCH)" >> go.mod
 
@@ -40,7 +40,7 @@ create: $(APP_FILE) clean
 build: $(BUILD_PATH)/$(APP_NAME)
 	-cd $(BUILD_PATH)/$(APP_NAME) && flogo build -e
 	cd $(BUILD_PATH)/$(APP_NAME) && \
-	flogo install github.com/yxuco/hlf-contrib/function/float
+	flogo install $(DT_REPO)/function/float
 
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	go mod vendor && \
@@ -96,9 +96,9 @@ create-client: $(CLIENT_FILE) clean-client
 	cd $(CLIENT_PATH) && \
 	flogo create --cv $(FLOGO_VER) -f $(CLIENT_FILE) $(CLIENT_NAME)
 	cp $(SHIM_PATH)/clientappimports.go $(CLIENT_PATH)/$(CLIENT_NAME)/src
-	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
+	# cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	echo "" >> go.mod && \
-	echo "replace github.com/yxuco/hlf-contrib => $(DT_REPO) $(DT_BRANCH)" >> go.mod
+	echo "replace $(DT_REPO) => $(DT_REPO) $(DT_BRANCH)" >> go.mod
 
 .PHONY: build-client
 build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
@@ -106,7 +106,7 @@ build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
 	go get -u -d github.com/hyperledger/fabric-sdk-go@master && \
 	go get -u -d github.com/project-flogo/flow/activity/subflow@master
 	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && \
-	flogo install github.com/yxuco/hlf-contrib/function/float && \
+	flogo install $(DT_REPO)/function/float && \
 	flogo build -e
 	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go mod vendor && \
