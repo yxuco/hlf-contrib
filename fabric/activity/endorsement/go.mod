@@ -1,11 +1,12 @@
-module github.com/TIBCOSoftware/dovetail-contrib/hyperledger-fabric/fabric/activity/endorsement
+module github.com/yxuco/hlf-contrib/fabric/activity/endorsement
 
 go 1.12
 
 require (
-	github.com/TIBCOSoftware/dovetail-contrib/hyperledger-fabric/fabric/common v0.0.0-20191014214452-6ee58d835c03
-	github.com/golang/protobuf v1.3.2 // indirect
-	github.com/hyperledger/fabric v1.4.3 // indirect
-	github.com/pkg/errors v0.8.1 // indirect
-	github.com/project-flogo/core v0.9.3 // indirect
+	github.com/golang/protobuf v1.3.2
+	github.com/hyperledger/fabric v1.4.4
+	github.com/pkg/errors v0.8.1
+	github.com/project-flogo/core v0.9.4
+	github.com/stretchr/testify v1.4.0
+	github.com/yxuco/hlf-contrib/fabric/common v0.1.0
 )
