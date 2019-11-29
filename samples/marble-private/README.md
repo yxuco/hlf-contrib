@@ -1,5 +1,5 @@
 # marble-private
-This example uses the [project Dovetail](https://tibcosoftware.github.io/dovetail/) to implement the [Hyperledger Fabric](https://www.hyperledger.org/projects/fabric) sample chaincode [marbles02_private](https://github.com/hyperledger/fabric-samples/tree/release-1.4/chaincode/marbles02_private).  This sample demonstrates the use of Hyperledger Fabric private collections.  It is implemented using [Flogo®](https://www.flogo.io/) models by visual programming with zero-code.  The Flogo® models can be created, imported, edited, and/or exported by using [TIBCO Flogo® Enterprise](https://docs.tibco.com/products/tibco-flogo-enterprise-2-8-0) or [Dovetail](https://github.com/TIBCOSoftware/dovetail).
+This example uses the [TIBCO Flogo® Enterprise](https://www.tibco.com/products/tibco-flogo) to implement the [Hyperledger Fabric](https://www.hyperledger.org/projects/fabric) sample chaincode [marbles02_private](https://github.com/hyperledger/fabric-samples/tree/release-1.4/chaincode/marbles02_private).  This sample demonstrates the use of Hyperledger Fabric private collections.  It is implemented using [Flogo®](https://www.flogo.io/) models by visual programming with zero-code.  The Flogo® models can be created, imported, edited, and/or exported by using [TIBCO Flogo® Enterprise](https://docs.tibco.com/products/tibco-flogo-enterprise-2-8-0).
 
 ## Prerequisite
 Follow the instructions [here](../../development.md) to setup the Dovetail development environment on Mac or Linux.
@@ -7,7 +7,7 @@ Follow the instructions [here](../../development.md) to setup the Dovetail devel
 ## Edit smart contract (opptional)
 Skip to the next section if you do not plan to modify the included sample model.
 
-- Start TIBCO Flogo® Enterprise or Dovetail.
+- Start TIBCO Flogo® Enterprise.
 - Open http://localhost:8090 in Chrome web browser.
 - Create new Flogo App of name `marble_private` and choose `Import app` to import the model [`marble_private.json`](marble_private.json)
 - You can then add or update contract transactions using the graphical modeler of the TIBCO Flogo® Enterprise.
@@ -60,12 +60,14 @@ cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble-private
 make package
 ```
 Following are steps to edit or view the REST service models.
-- Start TIBCO Flogo® Enterprise or Dovetail.
+- Start TIBCO Flogo® Enterprise.
 - Open http://localhost:8090 in Chrome web browser.
 - Create new Flogo App of name `marble_private_client` and choose `Import app` to import the model [`marble_private_client.json`](marble_private_client.json)
 - You can then add or update the service implementation using the graphical modeler of the TIBCO Flogo® Enterprise.
 - Open `Connections` tab, find and edit the `marble private client` connector.  Set the `Smart contract metadata file` to the [`metadata.json`](contract-metadata/metadata.json), which is generated in the previous step.  Set the `Network configuration file` and `entity matcher file` to the corresponding files in [`testdata`](../../testdata).
 - After you are done editing, export the Flogo App, and copy the downloaded model file, i.e., [`marble_private_client.json`](marble_private_client.json) to this `marble-private` sample folder.
+
+Note: after you import the REST model, check the configuration of the REST trigger.  The port should be mapped to `=$property["PORT"]`.  Correcct the mapping if it is not imported correctly.
 
 ## Build and start the marble-private REST service
 Set `$PATH` to use Go 1.13.x, and then build and start the client app as follows:

@@ -1,9 +1,9 @@
 # audit
-This example demonstrates the use of [Hyperledger Fabric](https://www.hyperledger.org/projects/fabric) for building audit trails across multiple organizations and multiple data domains.  The [TIBCO Cloud AuditSafe](https://www.tibco.com/products/tibco-cloud-auditsafe) uses a similar blockchain service. It uses the [project Dovetail](https://tibcosoftware.github.io/dovetail/) to implement and deploy following 2 components:
+This example demonstrates the use of [Hyperledger Fabric](https://www.hyperledger.org/projects/fabric) for building audit trails across multiple organizations and multiple data domains.  The [TIBCO Cloud AuditSafe](https://www.tibco.com/products/tibco-cloud-auditsafe) uses a similar blockchain service. It uses the [TIBCO Flogo® Enterprise](https://www.tibco.com/products/tibco-flogo) to implement and deploy following 2 components:
 - Chaincode for Hyperledger Fabric that implements the business logic for creating and querying audit trails for multiple data domains and owners;
 - GraphQL service that end-users can call to submit audit transactions.
 
-Both components are implemented using [Flogo®](https://www.flogo.io/) models by visual programming with zero-code.  The Flogo® models can be created, imported, edited, and/or exported by using [TIBCO Flogo® Enterprise](https://docs.tibco.com/products/tibco-flogo-enterprise-2-8-0) or [Dovetail](https://github.com/TIBCOSoftware/dovetail).
+Both components are implemented using [Flogo®](https://www.flogo.io/) models by visual programming with zero-code.  The Flogo® models can be created, imported, edited, and/or exported by using [TIBCO Flogo® Enterprise](https://docs.tibco.com/products/tibco-flogo-enterprise-2-8-0).
 
 ## Prerequisite
 Follow the instructions [here](../../development.md) to setup the Dovetail development environment on Mac or Linux.
@@ -11,7 +11,7 @@ Follow the instructions [here](../../development.md) to setup the Dovetail devel
 ## Edit smart contract (optional)
 Skip to the next section if you do not plan to modify the included chaincode model.
 
-- Start TIBCO Flogo® Enterprise or Dovetail.
+- Start TIBCO Flogo® Enterprise.
 - Open http://localhost:8090 in Chrome web browser.
 - Create new Flogo App of name `audit` and choose `Import app` to import the model [`audit.json`](audit.json)
 - You can then add or update contract transactions using the graphical modeler of the TIBCO Flogo® Enterprise.
@@ -60,7 +60,7 @@ cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/audit
 make package
 ```
 Following are steps to edit or view the GraphQL service models.
-- Start TIBCO Flogo® Enterprise or Dovetail.
+- Start TIBCO Flogo® Enterprise.
 - Open http://localhost:8090 in Chrome web browser.
 - Create new Flogo App of name `audit_client` and choose `Import app` to import the model [`audit_client.json`](audit_client.json)
 - You can then add or update the service implementation using the graphical modeler of the TIBCO Flogo® Enterprise.

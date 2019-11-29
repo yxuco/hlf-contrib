@@ -36,9 +36,6 @@ create: $(APP_FILE) clean
 	rm $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp $(SHIM_PATH)/chaincode_shim.go $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp $(SHIM_PATH)/dovetailimports.go $(BUILD_PATH)/$(APP_NAME)/src
-	cd $(BUILD_PATH)/$(APP_NAME)/src && \
-	echo "" >> go.mod && \
-	echo "replace github.com/yxuco/hlf-contrib => $(DT_REPO) $(DT_BRANCH)" >> go.mod
 
 .PHONY: build
 build: $(BUILD_PATH)/$(APP_NAME)
@@ -47,6 +44,7 @@ build: $(BUILD_PATH)/$(APP_NAME)
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	go get -u -d github.com/project-flogo/flow/activity/subflow@master && \
 	go mod vendor && \
+	find vendor/$(DT_REPO)/fabric/ -name '*_metadata.go' -exec rm {} \; && \
 	cp -R $(PATCH_PATH)/* $(BUILD_PATH)/$(APP_NAME)/src/vendor/github.com/project-flogo && \
 	env GOOS=linux GOARCH=amd64 go build -mod vendor -o $(APP_NAME)
 
@@ -92,9 +90,6 @@ create-client: $(CLIENT_FILE) clean-client
 	cd $(CLIENT_PATH) && \
 	flogo create --cv $(FLOGO_VER) -f $(CLIENT_FILE) $(CLIENT_NAME)
 	cp $(SHIM_PATH)/clientappimports.go $(CLIENT_PATH)/$(CLIENT_NAME)/src
-	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
-	echo "" >> go.mod && \
-	echo "replace github.com/yxuco/hlf-contrib => $(DT_REPO) $(DT_BRANCH)" >> go.mod
 
 .PHONY: build-client
 build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
@@ -103,6 +98,7 @@ build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
 	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && flogo build -e
 	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go mod vendor && \
+	find vendor/$(DT_REPO)/fabclient/ -name '*_metadata.go' -exec rm {} \; && \
 	cp -R $(PATCH_PATH)/* $(CLIENT_PATH)/$(CLIENT_NAME)/src/vendor/github.com/project-flogo && \
 	go build -mod vendor -o $(CLIENT_NAME)
 
@@ -121,9 +117,6 @@ create-gql: $(GQL_FILE) clean-gql
 	cd $(GQL_PATH) && \
 	flogo create --cv $(FLOGO_VER) -f $(GQL_FILE) $(GQL_NAME)
 	cp $(SHIM_PATH)/clientappimports.go $(GQL_PATH)/$(GQL_NAME)/src
-	cd $(GQL_PATH)/$(GQL_NAME)/src && \
-	echo "" >> go.mod && \
-	echo "replace github.com/yxuco/hlf-contrib => $(DT_REPO) $(DT_BRANCH)" >> go.mod
 
 .PHONY: build-gql
 build-gql: $(GQL_PATH)/$(GQL_NAME)
@@ -132,6 +125,7 @@ build-gql: $(GQL_PATH)/$(GQL_NAME)
 	-cd $(GQL_PATH)/$(GQL_NAME) && flogo build -e
 	cd $(GQL_PATH)/$(GQL_NAME)/src && \
 	go mod vendor && \
+	find vendor/$(DT_REPO)/fabclient/ -name '*_metadata.go' -exec rm {} \; && \
 	cp -R $(PATCH_PATH)/* $(GQL_PATH)/$(GQL_NAME)/src/vendor/github.com/project-flogo && \
 	go build -mod vendor -o $(GQL_NAME)
 
