@@ -35,14 +35,17 @@ create: $(APP_FILE) clean
 
 .PHONY: build
 build: $(BUILD_PATH)/$(APP_NAME)
-	-cd $(BUILD_PATH)/$(APP_NAME) && flogo build -e
-	cd $(BUILD_PATH)/$(APP_NAME) && \
-	flogo install $(DT_REPO)/function/float
+	cd $(BUILD_PATH)/$(APP_NAME)/src && \
+	go mod edit -replace=github.com/project-flogo/flow@v0.9.4=github.com/yxuco/flow@v0.9.5 && \
+	go mod edit -replace=github.com/project-flogo/core@v0.9.4=github.com/yxuco/core@v0.9.5
+
+	-cd $(BUILD_PATH)/$(APP_NAME) && \
+	flogo install $(DT_REPO)/function/float && \
+	flogo build -e
 
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	go mod vendor && \
 	find vendor/$(DT_REPO)/fabric/ -name '*_metadata.go' -exec rm {} \; && \
-	cp -R $(PATCH_PATH)/* $(BUILD_PATH)/$(APP_NAME)/src/vendor/github.com/project-flogo && \
 	env GOOS=linux GOARCH=amd64 go build -mod vendor -o $(APP_NAME)
 
 .PHONY: deploy
@@ -96,16 +99,16 @@ create-client: $(CLIENT_FILE) clean-client
 
 .PHONY: build-client
 build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
-	-cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
-	go get -u -d github.com/hyperledger/fabric-sdk-go && \
+	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go get -u -d github.com/project-flogo/flow/activity/subflow@master
+
 	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && \
 	flogo install $(DT_REPO)/function/float && \
 	flogo build -e
+
 	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go mod vendor && \
 	find vendor/$(DT_REPO)/fabclient/ -name '*_metadata.go' -exec rm {} \; && \
-	cp -R $(PATCH_PATH)/* $(CLIENT_PATH)/$(CLIENT_NAME)/src/vendor/github.com/project-flogo && \
 	go build -mod vendor -o $(CLIENT_NAME)
 
 .PHONY: run
