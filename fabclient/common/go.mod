@@ -8,4 +8,5 @@ require (
 	github.com/project-flogo/core v0.9.4
 	github.com/stretchr/testify v1.4.0
 	github.com/xeipuuv/gojsonschema v1.2.0
+	google.golang.org/appengine v1.4.0 // indirect
 )

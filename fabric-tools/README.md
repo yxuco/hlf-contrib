@@ -56,7 +56,7 @@ cd $GOPATH/src/github.com/yxuco/hlf-contrib/fabric-tools/scripts
 ```
 This script uses the connection profile and user and password specified in the above steps, so change them to match the names in your configuration.
 
-Verify that a network-config-file, `config-ibp.yaml` is created, which will be used by the client app to connect to the IBP network.  A folder `crypto-ibp` should be created and it contains required crypto data, especially the private key and signing certificate of the client user, `user1`, which is in the folder, e.g., `crypto-ibp/organizations/org1msp/users/user1/msp`, and the `signing certificate` should be named as, e.g., `signcerts/user1@org1msp-cert.pem`.
+Verify that a network-config-file, `config-ibp.yaml` is created, which will be used by the client app to connect to the IBP network.  A folder `crypto-ibp` should be created and it contains required crypto data, especially the private key and signing certificate of the client user, `user1`, which is in the folder, e.g., `crypto-ibp/organizations/org1msp/users/user1/msp`, and the `signing certificate` must be named as, e.g., `signcerts/user1@org1msp-cert.pem`, where the org name between `@` and `-cert` must match the parent folder of `/users`, i.e., `org1msp` in this example.
 
 Note that the setup script depends on the [fabric-ca-client](https://github.com/hyperledger/fabric-ca), which must be installed in advance, i.e.,
 ```

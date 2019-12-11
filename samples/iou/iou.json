@@ -685,7 +685,7 @@
                         "from": "Log3",
                         "to": "Get",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "AuthorizedAdmin",
                         "value": "$activity[Cid].attrs.bank == $flow.parameters.bank && $activity[Cid].attrs.admin == \"true\""
                     },
                     {
@@ -699,16 +699,15 @@
                         "from": "Log1",
                         "to": "DuplicateError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Already Exists",
                         "value": "$activity[Get].code == 200"
                     },
                     {
                         "id": 8,
                         "from": "Log1",
                         "to": "Put",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Get].code != 200"
+                        "type": "exprOtherwise",
+                        "label": "Is New"
                     },
                     {
                         "id": 9,
@@ -726,9 +725,8 @@
                         "id": 11,
                         "from": "Log3",
                         "to": "NotAuthorizedError",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Cid].attrs.bank != $flow.parameters.bank || $activity[Cid].attrs.admin != \"true\""
+                        "type": "exprOtherwise",
+                        "label": "Not Authorized"
                     }
                 ],
                 "tasks": [
@@ -938,13 +936,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection"
@@ -1106,13 +1101,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection",
@@ -1239,7 +1231,7 @@
                         "from": "Log",
                         "to": "ReturnUSD",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "USD Bank",
                         "value": "$flow.bank == \"USDBank\""
                     },
                     {
@@ -1247,7 +1239,7 @@
                         "from": "Log",
                         "to": "ReturnEUR",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "EUR Bank",
                         "value": "$flow.bank == \"EURBank\""
                     }
                 ],
@@ -1351,16 +1343,15 @@
                         "id": 3,
                         "from": "Cid",
                         "to": "NotOwnerError",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Cid].attrs.alias != $flow.parameters.owner"
+                        "type": "exprOtherwise",
+                        "label": "Not Authorized"
                     },
                     {
                         "id": 4,
                         "from": "Cid",
                         "to": "Get",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Authorized",
                         "value": "$activity[Cid].attrs.alias == $flow.parameters.owner"
                     },
                     {
@@ -1374,7 +1365,7 @@
                         "from": "Log1",
                         "to": "NoAccountError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Customer",
                         "value": "$activity[Get].code != 200"
                     },
                     {
@@ -1382,16 +1373,15 @@
                         "from": "Log1",
                         "to": "NoFundError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "No Fund",
                         "value": "$activity[Get].code == 200 && $activity[Get].result.balance < $flow.parameters.amount"
                     },
                     {
                         "id": 8,
                         "from": "Log1",
                         "to": "PutAcct",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Get].code == 200 && $activity[Get].result.balance >= $flow.parameters.amount"
+                        "type": "exprOtherwise",
+                        "label": "Good Customer"
                     },
                     {
                         "id": 9,
@@ -1470,7 +1460,7 @@
                     {
                         "id": "Cid",
                         "name": "Cid",
-                        "description": "",
+                        "description": "This activity returns requesting client ID",
                         "activity": {
                             "ref": "#cid",
                             "schemas": {
@@ -1498,7 +1488,7 @@
                     {
                         "id": "Get",
                         "name": "Get",
-                        "description": "",
+                        "description": "This activity fetches data by key from fabric ledger",
                         "activity": {
                             "ref": "#get",
                             "input": {
@@ -1618,13 +1608,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection"
@@ -1797,13 +1784,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection",
@@ -1959,13 +1943,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -2135,13 +2116,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -2298,13 +2276,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -2427,7 +2402,7 @@
                         "from": "Log3",
                         "to": "NoIOUError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Invalid IOU",
                         "value": "$activity[GetIOU].code != 200"
                     },
                     {
@@ -2435,32 +2410,30 @@
                         "from": "Log3",
                         "to": "BankOwnedError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Owned",
                         "value": "$activity[GetIOU].code == 200 && $activity[GetIOU].result.owner != $flow.parameters.bank"
                     },
                     {
                         "id": 6,
                         "from": "Log3",
                         "to": "Cid",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[GetIOU].code == 200 && $activity[GetIOU].result.owner == $flow.parameters.bank"
+                        "type": "exprOtherwise",
+                        "label": "IOU Available"
                     },
                     {
                         "id": 7,
                         "from": "Cid",
                         "to": "NotOwnerError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Authorized",
                         "value": "$activity[Cid].attrs.alias != $flow.parameters.owner"
                     },
                     {
                         "id": 8,
                         "from": "Cid",
                         "to": "Get",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Cid].attrs.alias == $flow.parameters.owner"
+                        "type": "exprOtherwise",
+                        "label": "Authorized"
                     },
                     {
                         "id": 9,
@@ -2473,7 +2446,7 @@
                         "from": "Log1",
                         "to": "NoAccountError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Customer",
                         "value": "$activity[Get].code != 200"
                     },
                     {
@@ -2481,16 +2454,15 @@
                         "from": "Log1",
                         "to": "NoFundError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "No Fund",
                         "value": "$activity[Get].code == 200 && $activity[Get].result.balance < $activity[GetIOU].result.amount*$activity[BankConfig].exchangeRate"
                     },
                     {
                         "id": 12,
                         "from": "Log1",
                         "to": "PutAcct",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Get].code == 200 && $activity[Get].result.balance >= $activity[GetIOU].result.amount*$activity[BankConfig].exchangeRate"
+                        "type": "exprOtherwise",
+                        "label": "Good Customer"
                     },
                     {
                         "id": 13,
@@ -2563,7 +2535,7 @@
                     {
                         "id": "GetIOU",
                         "name": "GetIOU",
-                        "description": "",
+                        "description": "This activity fetches data by key from fabric ledger",
                         "activity": {
                             "ref": "#get",
                             "input": {
@@ -2683,13 +2655,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": ""
@@ -2770,7 +2739,7 @@
                     {
                         "id": "Get",
                         "name": "Get",
-                        "description": "",
+                        "description": "This activity fetches data by key from fabric ledger",
                         "activity": {
                             "ref": "#get",
                             "input": {
@@ -2890,13 +2859,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection"
@@ -3069,13 +3035,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection",
@@ -3231,13 +3194,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -3407,13 +3367,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -3536,7 +3493,7 @@
                         "from": "Log1",
                         "to": "NotExistError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Invalid IOU",
                         "value": "$activity[Get].code != 200"
                     },
                     {
@@ -3544,16 +3501,15 @@
                         "from": "Log1",
                         "to": "NotOwnerError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Owner",
                         "value": "$activity[Get].code == 200 && $activity[Cid].attrs.alias != $activity[Get].result.owner"
                     },
                     {
                         "id": 6,
                         "from": "Log1",
                         "to": "Put",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Get].code == 200 && $activity[Get].result.owner == $activity[Cid].attrs.alias"
+                        "type": "exprOtherwise",
+                        "label": "Authorized"
                     },
                     {
                         "id": 7,
@@ -3601,7 +3557,7 @@
                     {
                         "id": "Get",
                         "name": "Get",
-                        "description": "",
+                        "description": "This activity fetches data by key from fabric ledger",
                         "activity": {
                             "ref": "#get",
                             "input": {
@@ -3721,13 +3677,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": ""
@@ -3900,13 +3853,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -4048,7 +3998,7 @@
                         "from": "Log1",
                         "to": "NotExistError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Invalid IOU",
                         "value": "$activity[Get].code != 200"
                     },
                     {
@@ -4056,7 +4006,7 @@
                         "from": "Log1",
                         "to": "NotOwnerError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Owner",
                         "value": "$activity[Get].code == 200 && $activity[Cid].attrs.alias != $activity[Get].result.owner"
                     },
                     {
@@ -4064,16 +4014,15 @@
                         "from": "Log1",
                         "to": "SameCurrencyError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Same Bank",
                         "value": "$activity[Get].code == 200 && $activity[Get].result.currency == $activity[BankConfig].currency"
                     },
                     {
                         "id": 8,
                         "from": "Log1",
                         "to": "PutBank",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[Get].code == 200 && $activity[BankConfig].currency != $activity[Get].result.currency && $activity[Cid].attrs.alias == $activity[Get].result.owner"
+                        "type": "exprOtherwise",
+                        "label": "Authorized"
                     },
                     {
                         "id": 9,
@@ -4163,7 +4112,7 @@
                     {
                         "id": "Get",
                         "name": "Get",
-                        "description": "",
+                        "description": "This activity fetches data by key from fabric ledger",
                         "activity": {
                             "ref": "#get",
                             "input": {
@@ -4283,13 +4232,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": ""
@@ -4473,13 +4419,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -4637,13 +4580,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -4813,13 +4753,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -4942,7 +4879,7 @@
                         "from": "Log1",
                         "to": "NoIOUError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Invalid IOU",
                         "value": "$activity[GetIOU].code != 200"
                     },
                     {
@@ -4950,7 +4887,7 @@
                         "from": "Log1",
                         "to": "NotIssuerError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Issuer",
                         "value": "$activity[GetIOU].code == 200 && $activity[GetIOU].result.issuer != $flow.parameters.bank"
                     },
                     {
@@ -4958,16 +4895,15 @@
                         "from": "Log1",
                         "to": "NotOwnerError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Not Owner",
                         "value": "$activity[GetIOU].code == 200 && $activity[GetIOU].result.owner != $activity[Cid].attrs.alias"
                     },
                     {
                         "id": 7,
                         "from": "Log1",
                         "to": "BankConfig",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[GetIOU].code == 200 && $activity[GetIOU].result.issuer == $flow.parameters.bank && $activity[GetIOU].result.owner == $activity[Cid].attrs.alias"
+                        "type": "exprOtherwise",
+                        "label": "Verified"
                     },
                     {
                         "id": 8,
@@ -4986,16 +4922,15 @@
                         "from": "Log2",
                         "to": "NoAcctError",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "NotCustomer",
                         "value": "$activity[GetAcct].code != 200"
                     },
                     {
                         "id": 11,
                         "from": "Log2",
                         "to": "Delete",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[GetAcct].code == 200"
+                        "type": "exprOtherwise",
+                        "label": "Authorized"
                     },
                     {
                         "id": 12,
@@ -5181,13 +5116,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": ""
@@ -5401,13 +5333,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection"
@@ -5569,13 +5498,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -5717,13 +5643,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection",
@@ -5891,13 +5814,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -6054,13 +5974,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -6354,13 +6271,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Account",
                                 "privateCollection": "=$activity[BankConfig].acctCollection",
@@ -6667,13 +6581,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.Transaction",
                                 "privateCollection": "=$activity[BankConfig].txnCollection",
@@ -6941,13 +6852,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU"
                             },
@@ -7207,13 +7115,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -7339,7 +7244,7 @@
                         "from": "SenderBankConfig",
                         "to": "IssueIOU",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "Same Bank",
                         "value": "$flow.parameters.senderBank == $flow.parameters.receiverBank"
                     },
                     {
@@ -7358,9 +7263,8 @@
                         "id": 5,
                         "from": "SenderBankConfig",
                         "to": "SearchIOU",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$flow.parameters.senderBank != $flow.parameters.receiverBank"
+                        "type": "exprOtherwise",
+                        "label": "Need Exchange"
                     },
                     {
                         "id": 6,
@@ -7372,9 +7276,8 @@
                         "id": 7,
                         "from": "Log3",
                         "to": "IssueSenderIOU",
-                        "type": "expression",
-                        "label": "newtask",
-                        "value": "$activity[SearchIOU].status != 200"
+                        "type": "exprOtherwise",
+                        "label": "No Available IOU"
                     },
                     {
                         "id": 8,
@@ -7393,7 +7296,7 @@
                         "from": "Log3",
                         "to": "BuyIOU",
                         "type": "expression",
-                        "label": "newtask",
+                        "label": "IOU Available",
                         "value": "$activity[SearchIOU].status == 200"
                     },
                     {
@@ -7904,13 +7807,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -8181,13 +8081,10 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1574964737950,
+                                    "lastUpdatedTime": 1574964983624,
                                     "user": "flogo",
                                     "connectorName": "iou_data",
-                                    "connectorDescription": " ",
-                                    "isImported": true,
-                                    "createdTime": 1574964737950,
-                                    "subscriptionId": "flogo_sbsc"
+                                    "connectorDescription": " "
                                 },
                                 "dataType": "iou.IOU",
                                 "privateCollection": "",
@@ -8334,5 +8231,5 @@
     ],
     "connections": {},
     "contrib": "W3sicmVmIjoiZ2l0aHViLmNvbS95eHVjby9obGYtY29udHJpYi9mYWJyaWMiLCJzM2xvY2F0aW9uIjoie1VTRVJJRH0vZmFicmljIn0seyJyZWYiOiJnaXRodWIuY29tL3Byb2plY3QtZmxvZ28vY29udHJpYi9hY3Rpdml0eS9sb2ciLCJzM2xvY2F0aW9uIjoie1VTRVJJRH0vRGVmYXVsdC9hY3Rpdml0eS9sb2cifSx7InJlZiI6ImdpdGh1Yi5jb20vcHJvamVjdC1mbG9nby9jb250cmliL2FjdGl2aXR5L2Vycm9yIiwiczNsb2NhdGlvbiI6IntVU0VSSUR9L0RlZmF1bHQvYWN0aXZpdHkvZXJyb3IifV0=",
-    "fe_metadata": "UEsDBAoAAAAIAMeRfE+rqSRGFQAAABMAAAAIAAAAYXBwLmpzb26rViopykxPTy1yy8kvL1ayio6tBQBQSwECFAAKAAAACADHkXxPq6kkRhUAAAATAAAACAAAAAAAAAAAAAAAAAAAAAAAYXBwLmpzb25QSwUGAAAAAAEAAQA2AAAAOwAAAAAA"
+    "fe_metadata": "UEsDBAoAAAAIAGYHi0+rqSRGFQAAABMAAAAIAAAAYXBwLmpzb26rViopykxPTy1yy8kvL1ayio6tBQBQSwECFAAKAAAACABmB4tPq6kkRhUAAAATAAAACAAAAAAAAAAAAAAAAAAAAAAAYXBwLmpzb25QSwUGAAAAAAEAAQA2AAAAOwAAAAAA"
 }

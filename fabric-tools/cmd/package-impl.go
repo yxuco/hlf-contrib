@@ -14,7 +14,8 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/hyperledger/fabric/core/chaincode/platforms/golang"
-//	pb "github.com/hyperledger/fabric-protos-go/peer"
+
+	//	pb "github.com/hyperledger/fabric-protos-go/peer"
 	pb "github.com/hyperledger/fabric/protos/peer"
 	"github.com/pkg/errors"
 )
@@ -34,7 +35,7 @@ func packageCDS(path, name, version, outFile string) error {
 		return errors.Errorf("path '%s' does not contain folder 'src'", abspath)
 	}
 	os.Setenv("GOPATH", gopath)
-	fmt.Printf("gopath %s srcpath %s\n", gopath, srcpath)
+	fmt.Printf("gopath %s src-path %s\n", gopath, srcpath)
 
 	// generate cds content
 	input := &pb.ChaincodeInput{}

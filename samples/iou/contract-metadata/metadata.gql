@@ -3,28 +3,25 @@ schema {
 	mutation: Mutation
 }
 type Query {
-	getIOUByOwner(owner: String): [IOUKV]
-	getIOUHistory(id: String): [IOUHistory]
-	queryIOUByAmount(issuer: String, owner: String, amount: Float): [IOUKV]
 	getBankAccounts(bank: String): [AccountKV]
 	getIOUByIssuer(issuer: String): [IOUKV]
-	getAccountTransactions(name: String, bank: String): [TransactionKV]
+	getIOUByOwner(owner: String): [IOUKV]
+	getAccountTransactions(bank: String, name: String): [TransactionKV]
+	queryIOUByAmount(issuer: String, owner: String, amount: Float): [IOUKV]
+	getIOUHistory(id: String): [IOUHistory]
 }
 type Mutation {
-	issue(bank: String, owner: String, amount: Float): IOU
-	redeem(owner: String, id: String, bank: String): Account
-	buy(owner: String, iou: String, bank: String): IOU
-	createAccount(name: String, bank: String, balance: Float): Account
-	send(receiver: String, receiverBank: String, amount: Float, sender: String, senderBank: String): IOU
 	transfer(owner: String, id: String, newOwner: String): IOU
+	buy(bank: String, owner: String, iou: String): IOU
+	createAccount(name: String, bank: String, balance: Float): Account
+	redeem(owner: String, id: String, bank: String): Account
+	send(receiver: String, senderBank: String, receiverBank: String, amount: Float, sender: String): IOU
 	exchange(owner: String, id: String, bank: String): IOU
+	issue(bank: String, owner: String, amount: Float): IOU
 }
-type Transaction {
-	txID: String
-	txTime: String
-	account: String
-	amount: Float
-	iouRef: String
+type TransactionKV {
+	value: Transaction
+	key: String
 }
 
 type AccountKV {
@@ -32,23 +29,11 @@ type AccountKV {
 	value: Account
 }
 
-type TransactionKV {
-	key: String
-	value: Transaction
-}
-
 type Account {
 	name: String
 	bank: String
 	balance: Float
 	currency: String
-}
-
-type IOUHistory {
-	txTime: String
-	isDeleted: Boolean
-	value: IOU
-	txID: String
 }
 
 type IOU {
@@ -61,7 +46,22 @@ type IOU {
 }
 
 type IOUKV {
-	value: IOU
 	key: String
+	value: IOU
+}
+
+type IOUHistory {
+	txID: String
+	txTime: String
+	isDeleted: Boolean
+	value: IOU
+}
+
+type Transaction {
+	txTime: String
+	account: String
+	amount: Float
+	iouRef: String
+	txID: String
 }
 
