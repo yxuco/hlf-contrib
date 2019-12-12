@@ -92,16 +92,15 @@ create-client: $(CLIENT_FILE) clean-client
 	cp $(CLIENT_FILE) $(CLIENT_PATH)
 	cd $(CLIENT_PATH) && \
 	flogo create --cv $(FLOGO_VER) -f $(CLIENT_FILE) $(CLIENT_NAME)
-	cp $(SHIM_PATH)/clientappimports.go $(CLIENT_PATH)/$(CLIENT_NAME)/src
+	cp $(PATCH_PATH)/codegen.sh $(CLIENT_PATH)/$(CLIENT_NAME)
+	cd $(CLIENT_PATH)/$(CLIENT_NAME) && ./codegen.sh $(FE_HOME) && chmod +x src/gomodedit.sh
 
 .PHONY: build-client
 build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
 	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go get -u -d github.com/project-flogo/flow/activity/subflow@master
 
-	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && \
-	flogo install $(DT_REPO)/function/float && \
-	flogo build -e
+	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && flogo build -e
 
 	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
 	go mod vendor && \

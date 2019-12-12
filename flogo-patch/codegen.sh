@@ -24,6 +24,7 @@ function printImports {
       echo "   _ $f"
     fi
   done
+  echo "   _ \"github.com/project-flogo/core/app/propertyresolver\""
   echo ")"
 }
 
