@@ -3,30 +3,25 @@ schema {
 	mutation: Mutation
 }
 type Query {
-	getBankAccounts(bank: String): [AccountKV]
 	getIOUByIssuer(issuer: String): [IOUKV]
 	getIOUByOwner(owner: String): [IOUKV]
-	getAccountTransactions(bank: String, name: String): [TransactionKV]
 	queryIOUByAmount(issuer: String, owner: String, amount: Float): [IOUKV]
+	getBankAccounts(bank: String): [AccountKV]
+	getAccountTransactions(bank: String, name: String): [TransactionKV]
 	getIOUHistory(id: String): [IOUHistory]
 }
 type Mutation {
+	redeem(owner: String, id: String, bank: String): Account
+	send(receiver: String, sender: String, senderBank: String, receiverBank: String, amount: Float): IOU
+	createAccount(name: String, bank: String, balance: Float): Account
+	issue(bank: String, owner: String, amount: Float): IOU
 	transfer(owner: String, id: String, newOwner: String): IOU
 	buy(bank: String, owner: String, iou: String): IOU
-	createAccount(name: String, bank: String, balance: Float): Account
-	redeem(owner: String, id: String, bank: String): Account
-	send(receiver: String, senderBank: String, receiverBank: String, amount: Float, sender: String): IOU
 	exchange(owner: String, id: String, bank: String): IOU
-	issue(bank: String, owner: String, amount: Float): IOU
 }
-type TransactionKV {
-	value: Transaction
-	key: String
-}
-
 type AccountKV {
-	key: String
 	value: Account
+	key: String
 }
 
 type Account {
@@ -36,18 +31,17 @@ type Account {
 	currency: String
 }
 
-type IOU {
-	id: String
-	issuer: String
-	amount: Float
-	currency: String
-	issueDate: String
-	owner: String
-}
-
 type IOUKV {
 	key: String
 	value: IOU
+}
+
+type Transaction {
+	txID: String
+	txTime: String
+	account: String
+	amount: Float
+	iouRef: String
 }
 
 type IOUHistory {
@@ -57,11 +51,17 @@ type IOUHistory {
 	value: IOU
 }
 
-type Transaction {
-	txTime: String
-	account: String
+type IOU {
+	issuer: String
 	amount: Float
-	iouRef: String
-	txID: String
+	currency: String
+	issueDate: String
+	owner: String
+	id: String
+}
+
+type TransactionKV {
+	key: String
+	value: Transaction
 }
 

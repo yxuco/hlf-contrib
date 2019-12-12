@@ -45,6 +45,7 @@ build: $(BUILD_PATH)/$(APP_NAME)
 
 .PHONY: deploy
 deploy: build
+	-rm $(FAB_PATH)/first-network/scripts/$(APP_NAME)_1.0.cds
 	cp -Rf META-INF $(BUILD_PATH)/$(APP_NAME)/src
 	rm -Rf $(CC_DEPLOY)/$(APP_NAME)
 	cp -Rf $(BUILD_PATH)/$(APP_NAME)/src $(CC_DEPLOY)/$(APP_NAME)
