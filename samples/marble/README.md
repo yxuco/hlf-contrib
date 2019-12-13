@@ -24,6 +24,7 @@ The detailed commands of the above steps are as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble
 make create
+make build
 make deploy
 ```
 
@@ -38,6 +39,7 @@ Use `cli` docker container to install and instantiate the `marble_cc` chaincode.
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble
 make cli-init
 ```
+The step also packages the `marble_cc_1.0.cds` file under the `CC_DEPLOY` folder, and it can be used to deploy the chaincode to any other Fabric networks.
 
 Optionally, test the chaincode from `cli` docker container, i.e.,
 ```
@@ -54,7 +56,7 @@ The sample Flogo model, [`marble_client_app.json`](marble_client_app.json) is a 
 The client app requires the metadata of the `marble-app` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble
-make package
+make metadata
 ```
 Following are steps to edit or view the REST service models.
 - Start TIBCO Flogo® Enterprise.
@@ -129,7 +131,7 @@ docker rmi $(docker images | grep dev-peer | awk '{print $3}')
 ```
 
 ## Deploy to IBM Cloud
-To deploy the `marblle` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The following script creates [`marble_cc.cds`](marble_cc.cds), which you can deploy to IBM Blockchain Platform.
+To deploy the `marblle` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The script `make cli-init` can creates `marble_cc_1.0.cds`, which you can deploy to IBM Blockchain Platform.
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble
 make package

@@ -170,7 +170,7 @@ The sample Flogo model, [`iou_client.json`](iou_client.json) is a GraphQL servic
 The client app requires the metadata of the `iou` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/iou
-make package
+make metadata
 ```
 Following are steps to edit or view the GraphQL service models.
 - Start TIBCO Flogo® Enterprise.
