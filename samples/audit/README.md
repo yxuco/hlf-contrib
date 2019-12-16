@@ -27,6 +27,7 @@ The detailed commands of the above steps are as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/audit
 make create
+make build
 make deploy
 ```
 
@@ -57,7 +58,7 @@ The sample Flogo model, [`audit_client.json`](audit_client.json) is a GraphQL se
 The client app requires the metadata of the `audit` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/audit
-make package
+make metadata
 ```
 Following are steps to edit or view the GraphQL service models.
 - Start TIBCO Flogo® Enterprise.
@@ -68,7 +69,7 @@ Following are steps to edit or view the GraphQL service models.
 - After you are done editing, export the Flogo App, and copy the downloaded model file, i.e., [`audit_client.json`](audit_client.json) to this `audit` sample folder.
 
 ## Build and start the audit GraphQL service
-Set `$PATH` to use Go 1.13.x, and then build and start the client app as follows:
+Build and start the client app as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/audit
 make create-client
@@ -105,6 +106,6 @@ docker rmi $(docker images | grep dev-peer | awk '{print $3}')
 ```
 
 ## Deploy to IBM Cloud
-To deploy the `audit` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The script `make package` has already created [`audit_cc.cds`](audit_cc.cds), which you can deploy to IBM Blockchain Platform.  Refer to [fabric-tools](../../fabric-tools) for details about installing chaincode on the IBM Blockchain Platform.
+To deploy the `audit` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The script `make cli-init` has already created `audit_cc_1.0.cds`, which you can deploy to IBM Blockchain Platform.  Refer to [fabric-tools](../../fabric-tools) for details about installing chaincode on the IBM Blockchain Platform.
 
 The GraphQL service app can access the same `audit` chaincode deployed in [IBM Cloud](https://cloud.ibm.com) using the [IBM Blockchain Platform](https://cloud.ibm.com/catalog/services/blockchain-platform-20). The only required update is the network configuration file.  [config_ibp.yaml](../../testdata/config_ibp.yaml) is a sample network configuration that can be used by the GraphQL service.

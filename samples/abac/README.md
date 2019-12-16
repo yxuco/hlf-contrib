@@ -23,6 +23,7 @@ The detailed commands of the above steps are as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/abac
 make create
+build
 make deploy
 ```
 
@@ -56,7 +57,7 @@ The sample Flogo model, [`abac_client.json`](abac_client.json) is a REST service
 The client app requires the metadata of the `abac-app` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/abac
-make package
+make metadata
 ```
 Following are steps to edit or view the REST service models.
 - Start TIBCO Flogo® Enterprise.

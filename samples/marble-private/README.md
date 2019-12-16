@@ -23,6 +23,7 @@ The detailed commands of the above steps are as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble-private
 make create
+make build
 make deploy
 ```
 
@@ -57,7 +58,7 @@ The sample Flogo model, [`marble_private_client.json`](marble_private_client.jso
 The client app requires the metadata of the `marble-private` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble-private
-make package
+make metadata
 ```
 Following are steps to edit or view the REST service models.
 - Start TIBCO Flogo® Enterprise.
@@ -117,7 +118,7 @@ curl -X GET http://localhost:8989/marbleprivate/owner/jerry
 Note that the operations for `delete` and `price` are allowed by only one of the 2 blockchain member orgs (i.e., org1 only), thus these 2 operations would fail if the REST service sends the request to an org2 peer.  To avoid such errors, the flow model for these operations override the fabric network endpoints to route requests to one of org1 peers only.
 
 ## Notes on GraphQL service
-The previous step `make package` generated a `GraphQL` schema file [`metadata.gql`](contract-metadata/metadata.gql), which can be used to implement a GraphQL service to invoke the `marble_private` chaincode.  Refer to the [`equipment sample`](../equipment) for steps of creating a GraphQL service with zero-code.
+The previous step `make metadata` generated a `GraphQL` schema file [`metadata.gql`](contract-metadata/metadata.gql), which can be used to implement a GraphQL service to invoke the `marble_private` chaincode.  Refer to the [`equipment sample`](../equipment) for steps of creating a GraphQL service with zero-code.
 
 ## Cleanup the sample fabric network
 After you are done testing, you can stop and cleanup the Fabric sample `first-network` as follows:
@@ -129,11 +130,8 @@ docker rmi $(docker images | grep dev-peer | awk '{print $3}')
 ```
 
 ## Deploy to IBM Cloud
-To deploy the `marblle_private` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The following script creates [`marble_private_cc.cds`](marble_private_cc.cds), which you can deploy to IBM Blockchain Platform.
-```
-cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/marble-private
-make package
-```
+To deploy the `marblle_private` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The script `make cli-init` creates `marble_private_cc_1.0.cds`, which you can deploy to IBM Blockchain Platform.
+
 Refer to [fabric-tools](../../fabric-tools) for details about installing chaincode on the IBM Blockchain Platform.
 
 The REST or GraphQL service apps can access the same `marble_private` chaincode deployed in [IBM Cloud](https://cloud.ibm.com) using the [IBM Blockchain Platform](https://cloud.ibm.com/catalog/services/blockchain-platform-20). The only required update is the network configuration file.  [config_ibp.yaml](../../testdata/config_ibp.yaml) is a sample network configuration that can be used by the REST or GraphQL service app.

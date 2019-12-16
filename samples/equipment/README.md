@@ -28,6 +28,7 @@ The detailed commands of the above steps are as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/equipment
 make create
+make build
 make deploy
 ```
 
@@ -58,7 +59,7 @@ The sample Flogo model, [`equipment_client.json`](equipment_client.json) is a RE
 The client app requires the metadata of the `equipment` chaincode. You can generate the contract metadata [`metadata.json`](contract-metadata/metadata.json) by
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/equipment
-make package
+make metadata
 ```
 Following are steps to edit or view the REST service models.
 - Start TIBCO Flogo® Enterprise.
@@ -71,7 +72,7 @@ Following are steps to edit or view the REST service models.
 Note: after you import the REST model, check the configuration of the REST trigger.  The port should be mapped to `=$property["PORT"]`.  Correcct the mapping if it is not imported correctly.  Also check the mapping of `User Name` field in the `eventListener` flow, and correct the mapping if it is not imported correctly.
 
 ## Build and start the equipment REST service
-Set `$PATH` to use Go 1.13.x, and then build and start the client app as follows:
+Build and start the client app as follows:
 ```
 cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/equipment
 make create-client
@@ -117,11 +118,8 @@ docker rmi $(docker images | grep dev-peer | awk '{print $3}')
 ```
 
 ## Deploy to IBM Cloud
-To deploy the `equipment` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The following script creates [`equipment_cc.cds`](equipment_cc.cds), which you can deploy to IBM Blockchain Platform.
-```
-cd $GOPATH/src/github.com/yxuco/hlf-contrib/samples/equipment
-make package
-```
+To deploy the `equipment` chaincode to IBM Cloud, it is required to package the chaincode in `.cds` format.  The script `make cli-init` created `equipment_cc_1.0.cds`, which you can deploy to IBM Blockchain Platform.
+
 Refer to [fabric-tools](../../fabric-tools) for details about installing chaincode on the IBM Blockchain Platform.
 
 The REST and GraphQL service apps can access the same `equipment` chaincode deployed in [IBM Cloud](https://cloud.ibm.com) using the [IBM Blockchain Platform](https://cloud.ibm.com/catalog/services/blockchain-platform-20). The only required update is the network configuration file.  [config_ibp.yaml](../../testdata/config_ibp.yaml) is a sample network configuration that can be used by the REST and GraphQL service apps.
