@@ -639,7 +639,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -753,7 +753,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -803,7 +803,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -917,7 +917,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -1089,7 +1089,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -1203,7 +1203,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -1380,7 +1380,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -1494,7 +1494,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -1544,7 +1544,7 @@
                             "input": {
                                 "key": "=$activity[Get].key",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -1658,7 +1658,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -1827,7 +1827,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -1941,7 +1941,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -1991,7 +1991,7 @@
                             "input": {
                                 "key": "=$activity[Get].key",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -2105,7 +2105,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -2271,7 +2271,7 @@
                                 "pageSize": 0,
                                 "start": "",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -2385,7 +2385,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -2569,7 +2569,7 @@
                                 "pageSize": 0,
                                 "start": "",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -2683,7 +2683,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -2733,7 +2733,7 @@
                             "ref": "#putall",
                             "input": {
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -2847,7 +2847,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -3044,7 +3044,7 @@
                                 "pageSize": 0,
                                 "start": "",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -3158,7 +3158,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -3322,7 +3322,7 @@
                                 "pageSize": 0,
                                 "start": "",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -3436,7 +3436,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -3601,7 +3601,7 @@
                                 "pageSize": "=$flow.parameters.pageSize",
                                 "start": "=$flow.parameters.bookmark",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -3715,7 +3715,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -3871,7 +3871,7 @@
                                 "pageSize": "=$flow.parameters.pageSize",
                                 "start": "=$flow.parameters.bookmark",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -3985,7 +3985,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -4150,7 +4150,7 @@
                             "input": {
                                 "key": "=$flow.parameters.name",
                                 "commonData": {
-                                    "id": "b88071d0-363a-11ea-b31d-191a4a65a35c",
+                                    "id": "55239f70-3646-11ea-b31d-191a4a65a35c",
                                     "type": "flogo:connector",
                                     "version": "1.0.0",
                                     "name": "fabric-datadef",
@@ -4264,7 +4264,7 @@
                                     "keyfield": "name",
                                     "iteratorAccumulate": false,
                                     "isValid": true,
-                                    "lastUpdatedTime": 1578943771558,
+                                    "lastUpdatedTime": 1578948670286,
                                     "user": "flogo",
                                     "connectorName": "marble_data",
                                     "connectorDescription": " "
@@ -4367,5 +4367,5 @@
     "properties": [],
     "connections": {},
     "contrib": "W3sicmVmIjoiZ2l0aHViLmNvbS95eHVjby9obGYtY29udHJpYi9mYWJyaWMiLCJzM2xvY2F0aW9uIjoie1VTRVJJRH0vZmFicmljIn0seyJyZWYiOiJnaXRodWIuY29tL3Byb2plY3QtZmxvZ28vY29udHJpYi9hY3Rpdml0eS9sb2ciLCJzM2xvY2F0aW9uIjoie1VTRVJJRH0vRGVmYXVsdC9hY3Rpdml0eS9sb2cifSx7InJlZiI6ImdpdGh1Yi5jb20vcHJvamVjdC1mbG9nby9jb250cmliL2FjdGl2aXR5L2Vycm9yIiwiczNsb2NhdGlvbiI6IntVU0VSSUR9L0RlZmF1bHQvYWN0aXZpdHkvZXJyb3IifV0=",
-    "fe_metadata": "UEsDBAoAAAAIAOCbLVCrqSRGFQAAABMAAAAIAAAAYXBwLmpzb26rViopykxPTy1yy8kvL1ayio6tBQBQSwECFAAKAAAACADgmy1Qq6kkRhUAAAATAAAACAAAAAAAAAAAAAAAAAAAAAAAYXBwLmpzb25QSwUGAAAAAAEAAQA2AAAAOwAAAAAA"
+    "fe_metadata": "UEsDBAoAAAAIAIamLVCrqSRGFQAAABMAAAAIAAAAYXBwLmpzb26rViopykxPTy1yy8kvL1ayio6tBQBQSwECFAAKAAAACACGpi1Qq6kkRhUAAAATAAAACAAAAAAAAAAAAAAAAAAAAAAAYXBwLmpzb25QSwUGAAAAAAEAAQA2AAAAOwAAAAAA"
 }
