@@ -118,7 +118,7 @@ export class getHandler extends WiServiceHandlerContribution {
                     valRes = JSON.parse(resultField.value.value);
                     valRes = JSON.stringify(valRes);
                 } catch (e) {
-                    vresult.setError("FABTIC-GET-1000", "Invalid JSON: " + e.toString());
+                    vresult.setError("FABRIC-GET-1000", "Invalid JSON: " + e.toString());
                 }
             }
             return vresult;

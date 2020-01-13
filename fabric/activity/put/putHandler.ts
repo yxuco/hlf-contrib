@@ -163,10 +163,10 @@ export class putHandler extends WiServiceHandlerContribution {
                     valRes = JSON.parse(dataField.value.value);
                     valRes = JSON.stringify(valRes);
                 } catch (e) {
-                    vresult.setError("FABTIC-PUT-1020", "Invalid JSON: " + e.toString());
+                    vresult.setError("FABRIC-PUT-1020", "Invalid JSON: " + e.toString());
                 }
             } else {
-                vresult.setError("FABTIC-PUT-1010", "Data definition must not be empty");
+                vresult.setError("FABRIC-PUT-1010", "Data definition must not be empty");
             }
             return vresult;
         } else if (fieldName === "compositeKeys") {
@@ -185,7 +185,7 @@ export class putHandler extends WiServiceHandlerContribution {
                     valRes = JSON.parse(keyField.value);
                     valRes = JSON.stringify(valRes);
                 } catch (e) {
-                    vresult.setError("FABTIC-PUT-1020", "Invalid JSON: " + e.toString());
+                    vresult.setError("FABRIC-PUT-1020", "Invalid JSON: " + e.toString());
                 }
             }
             return vresult;

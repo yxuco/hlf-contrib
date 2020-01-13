@@ -1,15 +1,15 @@
 # Setup Development Environment
-Dovetail fabric extensions can be used in one of the following 2 modeling environments:
+The Flogo extensions for Hyperledger Fabric can be used in one of the following 2 modeling environments:
 - [TIBCO Flogo® Enterprise v2.8.0](https://docs.tibco.com/products/tibco-flogo-enterprise-2-8-0)
 - [TIBCO Cloud Integration (TCI)](https://cloud.tibco.com/)
 
 ## Prerequisite for local development
 Following are packages required for setting up development evironment locally on Mac or Linux.
-- Download [TIBCO Flogo® Enterprise 2.8.0](https://edelivery.tibco.com/storefront/eval/tibco-flogo-enterprise/prod11810.html), or
-- [Install Go](https://golang.org/doc/install).  Note, current release require Go 1.12.x to build Hyperledger Fabric chaincode, although Go 1.13.x also works for Fabric client app.
+- Download [TIBCO Flogo® Enterprise 2.8.0](https://edelivery.tibco.com/storefront/eval/tibco-flogo-enterprise/prod11810.html);
+- [Install Go](https://golang.org/doc/install).  Note, current release requires Go 1.12.x to build Hyperledger Fabric chaincode, although Go 1.13.x also works for Fabric client app.
 - Download Hyperledger Fabric samples and executables of latest production release as described [here](https://github.com/hyperledger/fabric-samples/tree/release-1.4). Current release works with Fabric release 1.4.4.
-- Download and install [flogo-cli](https://github.com/project-flogo/cli)
-- Clone [hlf-contrib](https://github.com/yxuco/hlf-contrib) with Flogo extension for Hyperledger Fabric
+- Download and install [flogo-cli](https://github.com/project-flogo/cli).
+- Clone [hlf-contrib](https://github.com/yxuco/hlf-contrib).
 
 There are different ways to clone these packages.  This document assumes that you [install Go](https://golang.org/doc/install) first, and then install other packages under $GOPATH, i.e.,
 ```
