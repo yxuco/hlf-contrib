@@ -21,7 +21,7 @@
         },
         {
             "name": "commonData",
-            "type": "object",
+            "type": "connection",
             "display": {
                 "name": "Common data definition",
                 "description": "Select common data collection",

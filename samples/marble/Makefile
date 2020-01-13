@@ -1,6 +1,6 @@
 MAKEFILE_THIS := $(lastword $(MAKEFILE_LIST))
 SRC_PATH      := $(patsubst %/,%,$(dir $(abspath $(MAKEFILE_THIS))))
-APP_FILE      := marble_app.json
+APP_FILE      := marble.json
 APP_NAME      := marble_cc
 BUILD_PATH    ?= /tmp/marble
 FAB_PATH      ?= $(GOPATH)/src/github.com/hyperledger/fabric-samples
