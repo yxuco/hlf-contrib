@@ -157,10 +157,10 @@ export class putHandler extends WiServiceHandlerContribution {
                 vresult.setReadOnly(false);
             }
             let dataField: IFieldDefinition = context.getField("data");
-            if (dataField.value && dataField.value.value) {
+            if (dataField.value) {
                 let valRes;
                 try {
-                    valRes = JSON.parse(dataField.value.value);
+                    valRes = JSON.parse(dataField.value);
                     valRes = JSON.stringify(valRes);
                 } catch (e) {
                     vresult.setError("FABRIC-PUT-1020", "Invalid JSON: " + e.toString());
