@@ -90,8 +90,8 @@ export class putHandler extends WiServiceHandlerContribution {
             } else if (fieldName === "result") {
                 // set it the same as data if not using shared data defs
                 let dataField: IFieldDefinition = context.getField("data");
-                if (dataField.value && dataField.value.value) {
-                    return dataField.value.value;
+                if (dataField.value) {
+                    return dataField.value;
                 }
             }
         } else if (fieldName === "keyType" ) {

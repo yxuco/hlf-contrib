@@ -112,10 +112,10 @@ export class getHandler extends WiServiceHandlerContribution {
                 vresult.setReadOnly(false);
             }
             let resultField: IFieldDefinition = context.getField("result");
-            if (resultField.value && resultField.value.value) {
+            if (resultField.value) {
                 try {
                     let valRes;
-                    valRes = JSON.parse(resultField.value.value);
+                    valRes = JSON.parse(resultField.value);
                     valRes = JSON.stringify(valRes);
                 } catch (e) {
                     vresult.setError("FABRIC-GET-1000", "Invalid JSON: " + e.toString());
