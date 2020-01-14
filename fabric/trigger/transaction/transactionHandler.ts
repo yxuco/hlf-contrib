@@ -124,11 +124,11 @@ export class transactionHandler extends WiServiceHandlerContribution {
                 } else {
                     vresult.setReadOnly(false);
                 }
-                if (dataField.value) {
+                if (dataField.value && dataField.value.value) {
                     try {
                         // verify well-formed JSON schema
                         let valRes;
-                        valRes = JSON.parse(dataField.value);
+                        valRes = JSON.parse(dataField.value.value);
                         valRes = JSON.stringify(valRes);
                     } catch (e) {
                         return vresult.setError("FABRIC-TRIGGER-1000", "Invalid JSON: " + e.toString());

@@ -77,7 +77,7 @@
         },
         {
             "name": "parameters",
-            "type": "object",
+            "type": "complex_object",
             "display": {
                 "name": "Parameter names and schema",
                 "description": "e.g.,\r\n{\r\n  \"param1\": \"string\",\r\n  \"param2\": {\"field1\": 0}\r\n}",
@@ -108,7 +108,7 @@
         },
         {
             "name": "transient",
-            "type": "object",
+            "type": "complex_object",
             "display": {
                 "name": "Transient attributes and schema",
                 "description": "e.g.,\r\n{\r\n  \"trans1\": \"string\",\r\n  \"trans2\": {\"item1\": 0}\r\n}",
@@ -165,7 +165,7 @@
         },
         {
             "name": "returns",
-            "type": "object",
+            "type": "complex_object",
             "display": {
                 "name": "Returned attributes and schema",
                 "description": "e.g.,\r\n{\r\n  \"attr1\": \"string\",\r\n  \"attr2\": {\"elem1\": 0}\r\n}",
