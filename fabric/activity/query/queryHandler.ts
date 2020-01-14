@@ -117,7 +117,7 @@ export class queryHandler extends WiServiceHandlerContribution {
                     for (let paramName of arrParamNamesTmp) {
                         if (paramName === queryParam.parameterName) {
                             errMessage = "Parameter Name \'" + queryParam.parameterName + "\' already exists";
-                            vresult.setError("FABTIC-QUERY-1010", errMessage);
+                            vresult.setError("FABRIC-QUERY-1010", errMessage);
                             vresult.setValid(false);
                             break;
                         }

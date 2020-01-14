@@ -26,7 +26,7 @@
         },
         {
             "name": "queryParams",
-            "type": "object",
+            "type": "complex_object",
             "display": {
                 "type": "params",
                 "name": "Query Parameters",

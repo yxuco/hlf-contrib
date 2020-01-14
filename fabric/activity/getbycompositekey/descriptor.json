@@ -26,7 +26,7 @@
         },
         {
             "name": "attributes",
-            "type": "object",
+            "type": "complex_object",
             "display": {
                 "name": "Attribnute names",
                 "description": "Name of composite attributes used by the query",
