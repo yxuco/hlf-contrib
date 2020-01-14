@@ -8,9 +8,11 @@ CC_DEPLOY     := $(FAB_PATH)/chaincode
 SHIM_PATH     := $(SRC_PATH)/../../shim
 PATCH_PATH    := $(SRC_PATH)/../../flogo-patch
 
-CLIENT_FILE   := marble_client_app.json
+CLIENT_FILE   := marble_client.json
 CLIENT_PATH   ?= /tmp/marble_client
 CLIENT_NAME   := marble_client
+
+FE_CLIENT_FILE := marble_client_fe.json
 
 FLOGO_VER     ?= v0.9.4
 DT_REPO       ?= github.com/yxuco/hlf-contrib
@@ -25,7 +27,7 @@ clean:
 
 .PHONY: create
 create: $(APP_FILE) clean
-	mkdir -p $(BUILD_PATH) && \
+	mkdir -p $(BUILD_PATH)
 	cp $(APP_FILE) $(BUILD_PATH)
 	cd $(BUILD_PATH) && \
 	flogo create --cv $(FLOGO_VER) -f $(APP_FILE) $(APP_NAME)
@@ -45,7 +47,6 @@ build: $(BUILD_PATH)/$(APP_NAME)
 	
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	go mod vendor && \
-	find vendor/$(DT_REPO)/fabric/ -name '*_metadata.go' -exec rm {} \; && \
 	env GOOS=linux GOARCH=amd64 go build -mod vendor -o ../$(APP_NAME)
 
 .PHONY: deploy
@@ -83,13 +84,18 @@ create-client: $(CLIENT_FILE) clean-client
 
 .PHONY: build-client
 build-client: $(CLIENT_PATH)/$(CLIENT_NAME)
+	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && ./gomodedit.sh
 	-cd $(CLIENT_PATH)/$(CLIENT_NAME) && flogo build -e
-
-	cd $(CLIENT_PATH)/$(CLIENT_NAME)/src && \
-	go mod vendor && \
-	find vendor/$(DT_REPO)/fabclient/ -name '*_metadata.go' -exec rm {} \; && \
-	go build -mod vendor -o $(CLIENT_NAME)
 
 .PHONY: run
 run:
-	FLOGO_APP_PROP_RESOLVERS=env FLOGO_APP_PROPS_ENV=auto PORT=8989 FLOGO_LOG_LEVEL=DEBUG FLOGO_SCHEMA_SUPPORT=true FLOGO_SCHEMA_VALIDATION=false CRYPTO_PATH=$(FAB_PATH)/first-network/crypto-config $(CLIENT_PATH)/$(CLIENT_NAME)/src/$(CLIENT_NAME)
+	FLOGO_APP_PROP_RESOLVERS=env FLOGO_APP_PROPS_ENV=auto PORT=8989 FLOGO_LOG_LEVEL=DEBUG FLOGO_SCHEMA_SUPPORT=true FLOGO_SCHEMA_VALIDATION=false CRYPTO_PATH=$(FAB_PATH)/first-network/crypto-config $(CLIENT_PATH)/$(CLIENT_NAME)/bin/$(CLIENT_NAME)
+
+.PHONY: create-fe-client
+create-fe-client: $(FE_CLIENT_FILE) clean-client
+	mkdir -p $(CLIENT_PATH)
+	cp $(FE_CLIENT_FILE) $(CLIENT_PATH)
+	cd $(CLIENT_PATH) && \
+	flogo create --cv $(FLOGO_VER) -f $(FE_CLIENT_FILE) $(CLIENT_NAME)
+	cp $(PATCH_PATH)/codegen.sh $(CLIENT_PATH)/$(CLIENT_NAME)
+	cd $(CLIENT_PATH)/$(CLIENT_NAME) && ./codegen.sh $(FE_HOME) && chmod +x src/gomodedit.sh
