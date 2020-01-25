@@ -28,7 +28,7 @@ create: $(APP_FILE) clean
 	mkdir -p $(BUILD_PATH)
 	cp $(APP_FILE) $(BUILD_PATH)
 	cd $(BUILD_PATH) && \
-	flogo create --cv $(FLOGO_VER) -f $(APP_FILE) $(APP_NAME)
+	flogo create --cv $(FLOGO_VER) --verbose -f $(APP_FILE) $(APP_NAME)
 	rm $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp $(SHIM_PATH)/chaincode_shim.go $(BUILD_PATH)/$(APP_NAME)/src/main.go
 	cp -Rf META-INF $(BUILD_PATH)/$(APP_NAME)/src
