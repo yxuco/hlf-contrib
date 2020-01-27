@@ -12,7 +12,7 @@ CLIENT_FILE   := audit_client.json
 CLIENT_PATH   ?= /tmp/audit_client
 CLIENT_NAME   := audit_client
 
-FLOGO_VER     ?= v0.9.4
+FLOGO_VER     ?= v0.10.1
 DT_REPO       ?= github.com/yxuco/hlf-contrib
 FE_HOME       ?= $(HOME)/tibco/flogo28/2.8
 
@@ -38,9 +38,7 @@ create: $(APP_FILE) clean
 .PHONY: build
 build: $(BUILD_PATH)/$(APP_NAME)
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
-	go mod edit -replace=github.com/project-flogo/flow@v0.9.4=github.com/yxuco/flow@v0.9.5 && \
-	go mod edit -replace=github.com/project-flogo/core@v0.9.4=github.com/yxuco/core@v0.9.5 && \
-	go get -u -d github.com/project-flogo/flow/activity/subflow@master && \
+	go mod edit -replace=github.com/project-flogo/flow/activity/subflow@v0.9.0=github.com/yxuco/flow/activity/subflow@v0.9.4 && \
 	./gomodedit.sh
 
 	-cd $(BUILD_PATH)/$(APP_NAME) && flogo build -e
@@ -48,6 +46,7 @@ build: $(BUILD_PATH)/$(APP_NAME)
 	cd $(BUILD_PATH)/$(APP_NAME)/src && \
 	go mod vendor && \
 	find vendor/$(DT_REPO)/fabric/ -name '*_metadata.go' -exec rm {} \; && \
+	cp -R $(PATCH_PATH)/* $(BUILD_PATH)/$(APP_NAME)/src/vendor/github.com/project-flogo && \
 	env GOOS=linux GOARCH=amd64 go build -mod vendor -o ../$(APP_NAME)
 
 .PHONY: deploy
